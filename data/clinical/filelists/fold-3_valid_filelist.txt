@@ -1,0 +1,14 @@
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/3/36.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/3/35.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/3/39.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/0/5.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/5/50.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/2/21.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/1/12.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/3/31.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/4/41.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/2/29.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/3/33.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/0/9.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/2/27.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/1/12.txt

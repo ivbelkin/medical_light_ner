@@ -1,0 +1,113 @@
+{
+    "deeppavlov_root": ".",
+    "dataset_reader": {
+      "class_name": "medicine_light_reader",
+      "data_path": "/home/ivb/Repos/ner_medical/data/clinical/",
+      "train_filelist": "filelists/fold-3_train_filelist.txt",
+      "valid_filelist": "filelists/fold-3_valid_filelist.txt",
+      "test_filelist": "filelists/test2_filelist.txt",
+      "tags": ["Disease"],
+      "as_text": false,
+      "skip_empty": false
+    },
+    "dataset_iterator": {
+      "class_name": "data_learning_iterator"
+    },
+    "chainer": {
+      "in": ["sent"],
+      "in_y": ["tag_sent_bounds"],
+      "pipe": [
+        {
+          "in": ["sent"],
+          "class_name": "lazy_tokenizer",
+          "out": ["words"]
+        },
+        {
+          "in": ["sent", "words"],
+          "class_name": "parts_to_bounds",
+          "out": ["word_bounds"]
+        },
+        {
+          "in": ["word_bounds", "tag_sent_bounds"],
+          "class_name": "bounds_to_tags_bio",
+          "out": ["tags_bio"]
+        },
+        {
+          "in": ["tags_bio"],
+          "id": "tag_vocab",
+          "class_name": "simple_vocab",
+          "pad_with_zeros": false,
+          "fit_on": ["tags_bio"],
+          "save_path": "{MODELS_PATH}/ner_fs/tag.dict",
+          "load_path": "{MODELS_PATH}/ner_fs/tag.dict",
+          "out": ["tag_indices"]
+        },
+        {
+          "class_name": "elmo_embedder",
+          "elmo_output_names": ["lstm_outputs1", "lstm_outputs2", "word_emb"],
+          "mini_batch_size": 32,
+          "in": ["words"],
+          "spec": "{DOWNLOADS_PATH}/embeddings/elmo_ru_news",
+          "out": [
+            "tokens_emb"
+          ]
+        },
+        {
+          "class_name": "ner_svm",
+          "in": "tokens_emb",
+          "out": "tag_indices_hat",
+          "fit_on": ["tokens_emb", "tag_indices"],
+          "save_path": "{MODELS_PATH}/ner_fs/model_fold-3",
+          "load_path": "{MODELS_PATH}/ner_fs/model_fold-3"
+        },
+        {
+          "ref": "tag_vocab",
+          "in": ["tag_indices_hat"],
+          "out": ["tags_bio_hat"]
+        }
+      ],
+      "out": ["words", "tags_bio_hat"]
+    },
+    "train": {
+      "epochs": 100,
+      "batch_size": 64,
+      "metrics": [
+        {
+          "name": "ner_f1",
+          "inputs": ["tags_bio", "tags_bio_hat"]
+        },
+        {
+          "name": "ner_token_f1",
+          "inputs": ["tags_bio", "tags_bio_hat"]
+        }
+      ],
+      "validation_patience": 7,
+      "val_every_n_epochs": 1,
+  
+      "log_every_n_epochs": 1,
+      "show_examples": false,
+      "tensorboard_log_dir": "{MODELS_PATH}/ner_fs/logs",
+      "class_name": "fit_trainer",
+      "evaluation_targets": [
+        "valid",
+        "test"
+      ]
+    },
+    "metadata": {
+      "variables": {
+        "ROOT_PATH": "~/Repos/ner_medical/.deeppavlov",
+        "DOWNLOADS_PATH": "{ROOT_PATH}/downloads",
+        "MODELS_PATH": "{ROOT_PATH}/models"
+      },
+      "requirements": [
+        "{DEEPPAVLOV_PATH}/requirements/fasttext.txt",
+        "{DEEPPAVLOV_PATH}/requirements/tf-hub.txt"
+      ],
+      "download": [
+        {
+          "url": "http://files.deeppavlov.ai/deeppavlov_data/elmo_ru-news_wmt11-16_1.5M_steps.tar.gz",
+          "subdir": "{DOWNLOADS_PATH}/embeddings/elmo_ru_news"
+        }
+      ]
+    }
+  }

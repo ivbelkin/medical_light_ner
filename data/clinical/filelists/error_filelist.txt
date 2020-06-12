@@ -1,0 +1,7 @@
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main/1/14.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main1/4/44.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main2/1.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main2/2.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main2/3.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main3/0.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/main3/1.txt

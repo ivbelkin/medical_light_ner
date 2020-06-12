@@ -1,0 +1,13 @@
+data/clinical/example/
+data/clinical/main/
+data/clinical/main1/
+data/clinical/main2/
+data/clinical/main3/
+data/clinical/test/
+data/clinical/annotation.conf
+data/clinical/visual.conf
+
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+.deeppavlov/

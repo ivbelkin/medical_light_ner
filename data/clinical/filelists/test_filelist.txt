@@ -1,0 +1,5 @@
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/test/3.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/test/4.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/test/5.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/test/6.txt
+/home/ivb/Repos/ner_medical/notebooks/../data/clinical/test/7.txt
